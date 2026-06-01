@@ -1,0 +1,17 @@
+# Python environment artifacts
+__pycache__/
+*.pyc
+.venv/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data and Outputs (Never commit large binary matrices to Git)
+data/
+outputs/
+*.npz
+*.npy
+*.dcm
+*.nii.gz
+
+src.egg-info/
