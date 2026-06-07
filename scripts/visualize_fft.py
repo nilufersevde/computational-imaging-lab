@@ -6,6 +6,7 @@ from src.degradation.noise import add_gaussian_noise
 #from src.degradation.blur import apply_gaussian_blur
 from src.degradation.blur import mean_blur_3x3
 from src.reconstruction.denoise import simple_denoise
+from src.metrics.basic import mean_squared_error
 
 def create_fake_image(size=256):
     image = np.zeros((size, size), dtype=np.float32)
@@ -25,6 +26,12 @@ def main():
 
     noisy_image = add_gaussian_noise(image, sigma=0.20)
     denoised_image = simple_denoise(noisy_image)
+
+    mse_noisy = mean_squared_error(image, noisy_image)
+    mse_denoised = mean_squared_error(image, denoised_image)
+
+    print("MSE noisy:", mse_noisy)
+    print("MSE denoised:", mse_denoised)
 
 
     show_images(
