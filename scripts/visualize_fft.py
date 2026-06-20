@@ -60,7 +60,15 @@ def main():
     show_images(
     [image, noisy_image, mean_denoised, wiener_denoised],
     ["Original", "Noisy", "Mean Denoised", "Wiener Denoised"]
-)
+    )
+
+    print("MSE noisy:", mean_squared_error(image, noisy_image))
+    print("MSE mean:", mean_squared_error(image, mean_denoised))
+    print("MSE wiener:", mean_squared_error(image, wiener_denoised))
+
+    print("PSNR noisy:", peak_signal_to_noise_ratio(image, noisy_image))
+    print("PSNR mean:", peak_signal_to_noise_ratio(image, mean_denoised))
+    print("PSNR wiener:", peak_signal_to_noise_ratio(image, wiener_denoised))
 
     #show_kspace_magnitude(
     #    kspace_blurred,
