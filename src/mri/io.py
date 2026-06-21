@@ -29,3 +29,10 @@ def get_middle_slice(volume: np.ndarray, axis: int = 2) -> np.ndarray:
         return volume[:, :, middle_index]
     else:
         raise ValueError("axis must be 0, 1, or 2")
+
+
+def normalize_image(image: np.ndarray) -> np.ndarray:
+    image = image - image.min()
+    image = image / image.max()
+
+    return image
