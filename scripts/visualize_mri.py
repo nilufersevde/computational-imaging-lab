@@ -22,7 +22,7 @@ def main():
     slice_2d = normalize_image(slice_2d)
     noisy_slice = add_gaussian_noise(slice_2d, sigma=0.10)
     mean_denoised = mean_blur_3x3(noisy_slice)
-    wiener_denoised = wiener_denoise(noisy_slice, noise_power=0.01)
+    wiener_denoised = wiener_denoise(noisy_slice, noise_power=0.03)
     print("MSE noisy:", mean_squared_error(slice_2d, noisy_slice))
     print("MSE mean:", mean_squared_error(slice_2d, mean_denoised))
     print("PSNR noisy:", peak_signal_to_noise_ratio(slice_2d, noisy_slice))
