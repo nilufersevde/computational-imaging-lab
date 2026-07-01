@@ -75,28 +75,28 @@ if uploaded_file is not None:
         elif denoising_method == "Wiener Filter":
             denoised_slice = wiener_denoise(noisy_slice, noise_power=0.1)
 
-        st.write(uploaded_file)
-        st.write(type(uploaded_file))
+        col1, col2, col3 = st.columns(3)
 
-        fig, ax = plt.subplots(figsize=(5, 7))
+    with col1:
+        st.subheader("Original")
+        fig, ax = plt.subplots(figsize=(7, 7))
         ax.imshow(slice_2d.T, cmap="gray", origin="lower")
-        ax.set_title("Middle MRI Slice")
         ax.axis("off")
-
         st.pyplot(fig)
 
-        fig_noisy, ax = plt.subplots(figsize=(5, 7))
+    with col2:
+        st.subheader("Noisy")
+        fig, ax = plt.subplots(figsize=(7, 7))
         ax.imshow(noisy_slice.T, cmap="gray", origin="lower")
-        ax.set_title("Noisy")
         ax.axis("off")
+        st.pyplot(fig)
 
-        st.pyplot(fig_noisy)
-
-        fig_denoised, ax = plt.subplots(figsize=(5, 7))
+    with col3:
+        st.subheader(f"{denoising_method}")
+        fig, ax = plt.subplots(figsize=(5, 5))
         ax.imshow(denoised_slice.T, cmap="gray", origin="lower")
-        ax.set_title(f"Denoised: {denoising_method}")
         ax.axis("off")
+        st.pyplot(fig)
 
-        st.pyplot(fig_denoised)
 else:
     st.info("Please upload a .nii or .nii.gz file.")
