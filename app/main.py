@@ -8,6 +8,11 @@ import tempfile
 from src.reconstruction.wiener import wiener_denoise 
 import os
 
+from src.metrics.basic import (
+    mean_squared_error,
+    peak_signal_to_noise_ratio
+)
+
 st.set_page_config(
     page_title="Computational Imaging Lab",
     page_icon="🧠",
@@ -62,9 +67,9 @@ if uploaded_file is not None:
         temp_file.write(uploaded_file.getbuffer())
         temp_path = temp_file.name
         volume = load_nifti(temp_path)
+        volume = normalize_image(volume)
 
         slice_2d = get_middle_slice(volume)
-        slice_2d = normalize_image(slice_2d)
         noisy_slice = add_gaussian_noise(
             slice_2d,
             sigma=noise_sigma
@@ -98,5 +103,31 @@ if uploaded_file is not None:
         ax.axis("off")
         st.pyplot(fig)
 
+        mse = mean_squared_error(
+        slice_2d,
+        denoised_slice
+        )
+
+    psnr = peak_signal_to_noise_ratio(
+        slice_2d,
+        denoised_slice
+    )
+
+    metric1, metric2 = st.columns(2)
+
+    with metric1:
+        st.metric(
+            label="Mean Squared Error",
+            value=f"{mse:.6f}"
+        )
+
+    with metric2:
+        st.metric(
+            label="PSNR",
+            value=f"{psnr:.2f} dB"
+        )
+
 else:
     st.info("Please upload a .nii or .nii.gz file.")
+
+
