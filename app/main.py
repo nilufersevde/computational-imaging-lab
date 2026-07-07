@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.append(str(PROJECT_ROOT))
+
 import streamlit as st
 from src.mri.io import load_nifti, get_middle_slice, normalize_image
 from src.degradation.blur import mean_blur_3x3
