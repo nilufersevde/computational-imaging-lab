@@ -21,11 +21,9 @@ This project demonstrates a complete medical image processing pipeline, includin
 
 ---
 
-## Demo
+## Application
 
-### Original | Noisy | Denoised
-
-*(Add a screenshot of your application here.)*
+![Landing Page](screenshots/landing_page.png)
 
 ---
 
@@ -122,10 +120,12 @@ Simulates acquisition noise by adding Gaussian-distributed random values to the 
 ### Mean Filter
 
 Reduces noise by replacing each pixel with the average of its neighboring pixels.
+![Mean Filter Demo](screenshots/mean_filter.png)
 
 ### Wiener Filter
 
 Performs adaptive denoising based on local image statistics to better preserve anatomical structures.
+![Wiener Filter Demo](screenshots/wiener_filter.png)
 
 ### Evaluation Metrics
 
