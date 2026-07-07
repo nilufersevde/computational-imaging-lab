@@ -42,7 +42,6 @@ rpds-py==0.27.1
 scipy==1.13.1
 six==1.17.0
 smmap==5.0.3
--e git+https://github.com/nilufersevde/computational-imaging-lab.git@0b5aee60d20d5764397f7a6df9b6e470075f9ae3#egg=src
 streamlit==1.50.0
 tenacity==9.1.2
 toml==0.10.2
