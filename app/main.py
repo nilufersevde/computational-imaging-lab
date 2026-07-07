@@ -31,36 +31,23 @@ st.write(
     """
 )
 
-with st.sidebar:
+uploaded_file = st.file_uploader(
+    "Upload MRI",
+    type=["nii", "gz"]
+)
 
-    st.header("Controls")
+noise_sigma = st.slider(
+    "Noise Level",
+    0.0,
+    0.20,
+    0.05,
+    0.01
+)
 
-    uploaded_file = st.file_uploader(
-        "Upload MRI",
-        type=["nii", "gz"]
-    )
-
-    noise_sigma = st.slider(
-        "Noise Level",
-        0.0,
-        0.20,
-        0.05,
-        0.01
-    )
-
-    denoising_method = st.radio(
-        "Denoising Method",
-        [
-            "Mean Filter",
-            "Wiener Filter"
-        ]
-    )
-
-    st.sidebar.divider()
-
-    st.sidebar.caption(
-        "Developed by Nilüfer Sevde Özdemir"
-    )
+denoising_method = st.radio(
+    "Denoising Method",
+    ["Mean Filter", "Wiener Filter"]
+)
 
 if uploaded_file is not None:
 
@@ -114,9 +101,9 @@ if uploaded_file is not None:
 
     with col3:
         st.markdown(
-    f"<h3 style='text-align:center;'>{denoising_method}</h3>",
-    unsafe_allow_html=True
-)
+            f"<h3 style='text-align:center;'>{denoising_method}</h3>",
+            unsafe_allow_html=True
+        )
         fig, ax = plt.subplots(figsize=(7, 7))
         ax.imshow(denoised_slice.T, cmap="gray", origin="lower")
         ax.axis("off")
@@ -149,3 +136,4 @@ This demo demonstrates:
 - Wiener filtering
 - Quantitative evaluation using MSE and PSNR
 """)
+st.caption("Developed by Nilüfer Sevde Özdemir")
