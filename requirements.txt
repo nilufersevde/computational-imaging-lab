@@ -3,4 +3,4 @@ numpy
 matplotlib
 scipy
 nibabel
-opencv-python
+opencv-python-headless
